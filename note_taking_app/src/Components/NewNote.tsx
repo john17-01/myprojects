@@ -4,12 +4,18 @@ import type { NoteData, Tag } from "../App";
 
 type NewNoteProps = {
   onSubmit: (data: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
 };
-const NewNote = ({ onSubmit }: NewNoteProps) => {
+const NewNote = ({ onSubmit, onAddTag, availableTags }: NewNoteProps) => {
   return (
     <div>
       <h1>NewNote</h1>
-      <NoteForm onSubmit={onSubmit} />
+      <NoteForm
+        onSubmit={onSubmit}
+        onAddTag={onAddTag}
+        availableTags={availableTags}
+      />
     </div>
   );
 };
