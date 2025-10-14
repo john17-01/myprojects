@@ -1,7 +1,40 @@
+import { StarIcon } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import timeFormat from "../lib/timeFormat";
 
-const MovieCard = () => {
-  return <div></div>;
+const MovieCard = ({ showData }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="flex flex-col justify-between p-3 bg-gray-800 rounded-2xl hover:translate-y-1 transition duration-300 w-66">
+      <img
+        src={showData.backdrop_path}
+        className="rounded-lg h-52 w-full object-cover cursor-pointer"
+        onClick={() => {
+          navigate(`/movies/${showData._id}`);
+          scrollTo(0, 0);
+        }}
+      />
+      <p className="font-semibold mt-2 truncate">{showData.title}</p>
+      <p className="text-sm text-gray-400 mt-2">
+        {new Date(showData.release_date).getFullYear()} •{" "}
+        {showData.genres
+          .slice(0, 2)
+          .map((genre) => genre.name)
+          .join(" | ")}{" "}
+        • {timeFormat(showData.runtime)}
+      </p>
+      <div className="flex items-center justify-between mt-4 pb-3">
+        <button className="font-md bg-white/50 rounded-lg p-3 text-black cursor-pointer">
+          Buy Tickets{" "}
+        </button>
+        <p className="flex items-center gap-1 text-sm mt-1 pr-1">
+          <StarIcon className="w-4 h-4 fill-white" />
+          {showData.vote_average.toFixed(1)}
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default MovieCard;

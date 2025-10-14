@@ -3,25 +3,30 @@ import BlurBackground from "./BlurBackground";
 import { ArrowRight } from "lucide-react";
 import { dummyShowsData } from "../assets/assets";
 import MovieCard from "./MovieCard";
+import { useNavigate } from "react-router";
 
 const FeaturedSection = () => {
+  const navigate = useNavigate();
   return (
     <div>
-      <BlurBackground top="0" right="-80" />
       <div className="flex justify-between px-10 py-2 mt-10">
-        <p className="font-semibold">Now Showing</p>
-        <div className="flex items-center gap-1">
-          <p>View All</p>
+        <p className="font-medium text-lg text-gray-300">Now Showing</p>
+        <div className="group flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+          <p onClick={() => navigate("/movies")}>View All</p>
           <ArrowRight className="w-4 h-4" />
         </div>
       </div>
-      <div>
-        <MovieCard showData={dummyShowsData} />
+      {/* grid grid-cols-4 gap-8 m-5 */}
+      <div className="flex flex-wrap gap-8 mt-8 justify-center pb-5">
+        {dummyShowsData.map((data) => {
+          return <MovieCard key={data._id} showData={data} />;
+        })}
       </div>
 
-      <button className="flex items-center gap-1 justify-center rounded-lg bg-white/10 mx-auto w-50 px-10 py-5 group text-sm tranform transition-transform hover:scale-110 duration-500 ease-in-out">
+      <button className="flex items-center gap-1 justify-center rounded-lg bg-white/10 mx-auto mt-20 w-50 px-10 py-5 group 
+      text-sm  transition-transform hover:scale-110 duration-500 ease-in-out cursor-pointer">
         Show More
-        <ArrowRight className="w-4.5 h-4.5 tranform transition-transform duration-500 group-hover:translate-x-2" />
+        <ArrowRight className="w-4.5 h-4.5  transition-transform duration-500 group-hover:translate-x-2" />
       </button>
     </div>
   );
