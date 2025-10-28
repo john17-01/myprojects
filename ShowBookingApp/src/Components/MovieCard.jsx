@@ -25,7 +25,13 @@ const MovieCard = ({ showData }) => {
         • {timeFormat(showData.runtime)}
       </p>
       <div className="flex items-center justify-between mt-4 pb-3">
-        <button className="font-md bg-white/50 rounded-lg p-3 text-black cursor-pointer">
+        <button
+          className="font-md bg-white/50 rounded-lg p-3 text-black cursor-pointer"
+          onClick={() => {
+            navigate(`/movies/${showData._id}`);
+            scrollTo(0, 0);
+          }}
+        >
           Buy Tickets{" "}
         </button>
         <p className="flex items-center gap-1 text-sm mt-1 pr-1">

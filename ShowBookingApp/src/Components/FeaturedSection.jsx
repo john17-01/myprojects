@@ -23,8 +23,14 @@ const FeaturedSection = () => {
         })}
       </div>
 
-      <button className="flex items-center gap-1 justify-center rounded-lg bg-white/10 mx-auto mt-20 w-50 px-10 py-5 group 
-      text-sm  transition-transform hover:scale-110 duration-500 ease-in-out cursor-pointer">
+      <button
+        className="flex items-center gap-1 justify-center rounded-lg bg-white/10 mx-auto mt-20 w-50 px-10 py-5 group 
+      text-sm  transition-transform hover:scale-110 duration-500 ease-in-out cursor-pointer"
+        onClick={() => {
+          navigate("/movies");
+          scrollTo(0, 0);
+        }}
+      >
         Show More
         <ArrowRight className="w-4.5 h-4.5  transition-transform duration-500 group-hover:translate-x-2" />
       </button>
