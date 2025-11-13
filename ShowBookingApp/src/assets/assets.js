@@ -146,6 +146,36 @@ export const dummyShowsData = [
     runtime: 102,
   },
   {
+    _id: "574475",
+    title: "Final Destination Bloodlines",
+    overview:
+      "Plagued by a violent recurring nightmare, college student Stefanie heads home to track down the one person who might be able to break the cycle and save her family from the grisly demise that inevitably awaits them all.",
+    poster_path:
+      "https://image.tmdb.org/t/p/original/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
+    backdrop_path:
+      "https://image.tmdb.org/t/p/original/uIpJPDNFoeX0TVml9smPrs9KUVx.jpg",
+    release_date: "2025-05-14",
+    original_language: "en",
+    tagline: "Death runs in the family.",
+    genres: [
+      {
+        id: 27,
+        name: "Horror",
+      },
+      {
+        id: 9648,
+        name: "Mystery",
+      },
+    ],
+    casts: dummyCastsData,
+    vote_count: 18000,
+    vote_average: 7,
+    runtime: 110,
+    createdAt: "2025-06-06T13:27:25.264Z",
+    updatedAt: "2025-06-06T13:27:25.264Z",
+    __v: 0,
+  },
+  {
     _id: "1232546",
     id: 1232546,
     title: "Until Dawn",
