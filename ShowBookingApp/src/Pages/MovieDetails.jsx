@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { dummyShowsData } from "../assets/assets";
 import {
   ChevronLeft,
@@ -10,14 +10,21 @@ import {
 } from "lucide-react";
 import timeFormat from "../lib/timeFormat";
 import DateSelect from "../Components/DateSelect";
+import MovieCard from "../Components/MovieCard";
+import Loading from "../Components/Loading";
 
 const MovieDetails = () => {
   const [show, setShow] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getShow = async () => {
     const showDetails = dummyShowsData.find((movie) => movie._id === id);
-    setShow(showDetails);
+    if (showDetails) {
+      setShow(showDetails);
+    } else {
+      <Loading />;
+    }
   };
   useEffect(() => {
     getShow();
@@ -85,12 +92,28 @@ const MovieDetails = () => {
         </div>
       </div>
       <div>
-        <DateSelect dateTime={show.release_date} id={id} />
+        <DateSelect dateTime={show.release_date} movieId={id} />
+        <p className="font-semibold mt-20 mb-8 text-xl ">You May Also Like</p>
+        <div className="flex gap-8  max-sm:justify-center">
+          {dummyShowsData.slice(0, 4).map((movie, index) => (
+            <MovieCard key={index} showData={movie} />
+          ))}
+        </div>
+        <div className="mt-20 flex justify-center">
+          <button
+            className="font-medium cursor-pointer bg-white/50 backdrop-blur 
+        text-black py-3 px-10 rounded-lg transition hover:scale-110 active:scale-95 
+        duration-300"
+            onClick={() => navigate("/movies")}
+          >
+            Show More
+          </button>
+        </div>
       </div>
     </div>
   ) : (
     <div>
-      <h1>Loading...</h1>
+      <Loading />
     </div>
   );
 };
